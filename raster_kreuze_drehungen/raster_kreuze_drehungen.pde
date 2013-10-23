@@ -1,0 +1,30 @@
+int stepX;
+int stepY;
+int gap;
+
+void setup(){
+  size(1280, 720, P2D);
+  colorMode(RGB, 1);
+  background(1);
+  smooth(4);
+  stepX = 80;
+  stepY = 80;
+  gap = 20;
+  frameRate(10);
+}
+
+void draw(){
+  for(int h = 0; h < height; h += stepY){
+    for(int w = 0; w < width; w += stepX){
+      stroke(random(1));
+      noFill();
+      pushMatrix();
+      translate((w + stepX/2), (h + stepY/2));
+      println((w + stepX/2)+" "+ (h + stepY/2));
+      rotate(random(1)*TAU);
+      line(-stepX/4,-stepY/4,stepX/4,stepY/4);
+      line(stepX/4,-stepY/4,-stepX/4,stepY/4);
+      popMatrix();
+    }
+  }
+}
