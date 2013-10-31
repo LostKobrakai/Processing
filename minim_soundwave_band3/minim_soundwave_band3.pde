@@ -30,7 +30,7 @@ void setup()
  
   // specify 512 for the length of the sample buffers
   // the default buffer size is 1024
-  song = minim.loadFile("song.mp3", 512);
+  song = minim.loadFile("song3.mp3", 512);
   song.play();
  
   // an FFT needs to know how 
@@ -48,8 +48,6 @@ void draw()
   }
   
   waves[0] = new Wave(512);
-  //if(frameCount < 105 && frameCount > 100) println(frameCount +" : "+ waves[0].getWavePoint(123) +" : "+ waves[1].getWavePoint(123) +" : "+ waves[2].getWavePoint(123));
-  
   
   translate(width/4, height/4);
   rotateY(TAU/8);
@@ -61,13 +59,8 @@ void draw()
   float steps = width*1.0/(song.mix.size()-1);
   for(int i = 0; i < song.mix.size() - 1; i++)
   {
-    if(i == 0) println(i+", "+i*steps+", "+(song.mix.get(i) * 400));
-    if(i == 0) println(waves[0].getWavePoint(0));
-    if(i == 0) println(waves[1].getWavePoint(0));
     waves[0].saveWavePoint(i, i*steps, song.mix.get(i) * 400);
     waves[0].saveWavePoint(i+1, i*steps+steps, song.mix.get(i+1) * 400);
-    if(i == 0) println(waves[0].getWavePoint(0));
-    if(i == 0) println(waves[1].getWavePoint(0));
   }
   for(int l = 0; l < song.mix.size() - 1; l++)
   {
@@ -77,7 +70,6 @@ void draw()
       line(v1.x, 360 + v1.y, -100*i, v2.x, 360 + v2.y, -100*i);
     }
   }
-  println("--");
 }
 
 int lin(int x, int y){
